@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useState, createContext, ReactNode, useContext, useEffect } from "react";
+import React, { useState, createContext, ReactNode, useContext, useEffect, useReducer } from "react";
 
 export const BackdropCtx = createContext<[boolean, (v: boolean | ((p: boolean) => boolean)) => void] | null>(null)
 
@@ -9,14 +9,24 @@ export default function BackdropProvider({ children }: { children: ReactNode }) 
   return <BackdropCtx.Provider value={visibleState}>{children}</BackdropCtx.Provider>
 }
 
+interface CheckVisibilityInfo {
+  matchesVisibility: boolean;
+}
+
 export function useCheckBackdropVisibility(visibility: boolean) {
   const backdropVisibleState = useContext(BackdropCtx);
-  const [match, setMatch] = useState(false);
+
+  const reducer = (state: CheckVisibilityInfo, currentVisibility: boolean) => {
+    return (state = ({
+      matchesVisibility: currentVisibility === visibility
+    }));
+  }
+  const [match, dispatchMatch] = useReducer(reducer, { matchesVisibility: false });
 
   useEffect(() => {
     if (backdropVisibleState)
-      setMatch(backdropVisibleState[0] === visibility);
+      dispatchMatch(backdropVisibleState[0]);
   }, [backdropVisibleState]);
 
-  return match;
+  return match.matchesVisibility;
 }

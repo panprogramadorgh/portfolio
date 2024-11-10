@@ -1,7 +1,7 @@
 "use client"
 
 import React, { MouseEventHandler, useContext } from "react";
-import type { Metadata } from "next";
+// import type { Metadata } from "next";
 import localFont from "next/font/local";
 import BackdropProvider, { useCheckBackdropVisibility, BackdropCtx } from "./contexts/backdrop-ctx";
 import "./globals.css";
