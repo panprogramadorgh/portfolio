@@ -11,9 +11,7 @@ export async function getGithubUser() {
     const result = await octokit.request("GET /user", {})
     return result.data;
   } catch (error) {
-    if (typeof (error as any).status != 'undefined') {
-      console.error(`Error when fetching data from GitHub API: ${(error as any).status} - ${(error as any).response.data.message}`);
-    }
-    console.error(error);
+    console.error(`Error when fetching data from GitHub API:
+                  ${error}`);
   }
 }
