@@ -9,9 +9,12 @@ export default {
   theme: {
     extend: {
       colors: {
-        background: "var(--background)",
+        grastart: "var(--grastart)",
+        graend: "var(--graend)",
+        // background: "var(--background)",
         foreground: "var(--foreground)",
-      },
+
+      }
     },
   },
   plugins: [],
