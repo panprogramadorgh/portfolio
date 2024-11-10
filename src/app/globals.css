@@ -3,10 +3,11 @@
 @tailwind utilities;
 
 :root {
-  /* --background: #0a0a0a; */
+  --background: #1e293b99;
   --foreground: #fffc;
   --grastart: #041726;
   --graend: #0e131f;
+  --card-border-color: #e2e8f033;
 }
 
 h1 {
@@ -26,12 +27,19 @@ h3 {
 
 h4 {
   font-size: 1.5rem;
-  font-weight: 300;;
+  font-weight: 300;
+  ;
+}
+
+p {
+  font-size: 1.2rem;
 }
 
 a {
+  font-size: 1.2rem;
   transition: all 0.2s;
 }
+
 a:hover {
   color: #fff;
 }

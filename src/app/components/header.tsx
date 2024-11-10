@@ -80,12 +80,12 @@ export default function Header() {
           <div>
             <div className={`
                 p-6
-              bg-sky-200/5
+                bg-background
                 backdrop-blur-xl
                 rounded-xl
                 shadow-2xl
                 border-t
-                border-slate-200/15
+                border-card
               `}>
               <div className={`
                   flex
@@ -105,9 +105,7 @@ export default function Header() {
                   text-[1.8rem]
                   md:text-[2.2rem]
                 `}>Bienvenido, soy Alvaro</h2>
-              <p className={`
-                  text-[1.2rem]
-                `}>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sunt porro molestiae consequatur dolorem nobis cumque explicabo numquam nihil non! Eveniet, dicta ex harum nobis cupiditate voluptates quisquam. Ipsa, officiis placeat.</p>
+              <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sunt porro molestiae consequatur dolorem nobis cumque explicabo numquam nihil non! Eveniet, dicta ex harum nobis cupiditate voluptates quisquam. Ipsa, officiis placeat.</p>
             </div>
           </div>
           <div className={`

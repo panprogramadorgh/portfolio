@@ -11,9 +11,11 @@ export default {
       colors: {
         grastart: "var(--grastart)",
         graend: "var(--graend)",
-        // background: "var(--background)",
+        background: "var(--background)",
         foreground: "var(--foreground)",
-
+      },
+      borderColor: {
+        card: "var(--card-border-color)"
       }
     },
   },
