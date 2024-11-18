@@ -94,13 +94,15 @@ const titleReducer = (state: TitleInfo, action: TitleAction) => {
     newState.text = newState.text.substring(0, newState.text.length - 1);
   }
   else {
-    throw new Error(`Invalid action type: ${(action as any).type}`)
+    throw new Error(`Invalid action type: ${action}`)
   }
   return newState;
 }
 
 export default function Title() {
   const [title, dispatchTitle] = useReducer(titleReducer, { text: "", finalText: "Desarrollador de Software" });
+  /* El motivo de esta funcion no es otro que evitar el error de compilacion de vercel. De esta manera evitamos colocar title como dependencia en useEffect y con ello actualizaciones innecesarias. */
+  const getTitle = () => title;
 
   useEffect(() => {
     const timeouts: NodeJS.Timeout[] = [];
@@ -108,7 +110,7 @@ export default function Title() {
     const typingAnimation = createTitleAnimation({
       actionType: TitleActionTypes.StepNextChar,
       state: {
-        value: title,
+        value: getTitle(),
         dispatcher: dispatchTitle
       },
       animationTimeouts: timeouts,
