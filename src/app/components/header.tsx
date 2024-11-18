@@ -76,7 +76,15 @@ export default function Header() {
           
           pt-20
         `}>
-          <Title />
+          <div className={`
+              h-52
+              flex
+              items-center
+              px-4
+
+            `}>
+            <Title />
+          </div>
           <div>
             <div className={`
                 p-6
