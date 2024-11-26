@@ -1,10 +1,10 @@
 "use client"
 
 import { useReducer, useEffect } from "react"
+import { ChainAnimationBuilder } from "@/utils/chain-animation";
 
 interface TitleInfo {
   text: string;
-  finalText: string;
 }
 
 enum TitleActionTypes {
@@ -12,7 +12,7 @@ enum TitleActionTypes {
   PopChar
 }
 
-type TitleAction =
+type TitleReducerAction =
   | {
     type: TitleActionTypes.StepNextChar;
     nextChar: string;
@@ -21,27 +21,16 @@ type TitleAction =
     type: TitleActionTypes.PopChar;
   };
 
-interface ChainAnimationAction {
-  type: number
+type TitleAnimationAction = {
+  type: TitleActionTypes,
+  finalText: string;
 }
 
-// Funciones que efectuan animaciones sobre el texto
-type ChainAnimationBuilder<AnimationState, AnimationAction extends ChainAnimationAction> = (options: {
-  actionType: AnimationAction['type'],
-  state: {
-    value: AnimationState,
-    dispatcher: React.Dispatch<AnimationAction>
-  },
-  duration: number,
-  animationTimeouts: NodeJS.Timeout[],
-  next?: () => void
-}) => () => void;
-
-const createTitleAnimation: ChainAnimationBuilder<TitleInfo, TitleAction> = ({ actionType, state, duration, animationTimeouts, next }) => {
-  const interval = duration / state.value.finalText.length;
-  if (actionType == TitleActionTypes.PopChar) {
+const createTitleAnimation: ChainAnimationBuilder<TitleInfo, TitleReducerAction, TitleAnimationAction> = ({ action, state, duration, animationTimeouts, next }) => {
+  const interval = duration / action.finalText.length
+  if (action.type == TitleActionTypes.PopChar) {
     return () => {
-      let titleIndex = state.value.finalText.length - 1;
+      let titleIndex = action.finalText.length - 1;
       const typing = setInterval(() => {
         if (titleIndex >= 0) { // Eliminar caracteres
           state.dispatcher({
@@ -58,15 +47,14 @@ const createTitleAnimation: ChainAnimationBuilder<TitleInfo, TitleAction> = ({ a
       }, interval);
       animationTimeouts.push(typing);
     }
-  } else if (actionType == TitleActionTypes.StepNextChar) {
+  } else if (action.type == TitleActionTypes.StepNextChar) {
     return () => {
       let titleIndex = 0;
       const typing = setInterval(() => {
-        console.log("Ejecucino del intervalo");
-        if (titleIndex < state.value.finalText.length) { // Agregar caracteres
+        if (titleIndex < action.finalText.length) { // Agregar caracteres
           state.dispatcher({
             type: TitleActionTypes.StepNextChar,
-            nextChar: state.value.finalText[titleIndex]
+            nextChar: action.finalText[titleIndex]
           });
           titleIndex++;
         }
@@ -81,11 +69,11 @@ const createTitleAnimation: ChainAnimationBuilder<TitleInfo, TitleAction> = ({ a
     }
   }
   else {
-    throw new Error(`Invalid action type: ${actionType}`);
+    throw new Error(`Invalid action type: ${action.type}`);
   }
 }
 
-const titleReducer = (state: TitleInfo, action: TitleAction) => {
+const titleReducer = (state: TitleInfo, action: TitleReducerAction) => {
   const newState = { ...state };
   if (action.type === TitleActionTypes.StepNextChar) {
     newState.text += action.nextChar;
@@ -100,7 +88,7 @@ const titleReducer = (state: TitleInfo, action: TitleAction) => {
 }
 
 export default function Title() {
-  const [title, dispatchTitle] = useReducer(titleReducer, { text: "", finalText: "Desarrollador de Software" });
+  const [title, dispatchTitle] = useReducer(titleReducer, { text: "" });
   /* El motivo de esta funcion no es otro que evitar el error de compilacion de vercel. De esta manera evitamos colocar title como dependencia en useEffect y con ello actualizaciones innecesarias. */
   const getTitle = () => title;
 
@@ -108,7 +96,10 @@ export default function Title() {
     const timeouts: NodeJS.Timeout[] = [];
 
     const typingAnimation = createTitleAnimation({
-      actionType: TitleActionTypes.StepNextChar,
+      action: {
+        type: TitleActionTypes.StepNextChar,
+        finalText: "Desarrollador de Software"
+      },
       state: {
         value: getTitle(),
         dispatcher: dispatchTitle

@@ -1,7 +1,8 @@
+import Image from "next/image";
 import Nav from "@/app/components/nav";
 import Title from "@/app/components/title";
-
 import gradientGridImage from "@/app/images/grid-gradiant.webp"
+import PresentationCard from "./presentation-card";
 
 export default function Header() {
   return (
@@ -86,35 +87,7 @@ export default function Header() {
             <Title />
           </div>
           <div>
-            <div className={`
-                p-6
-                bg-background
-                backdrop-blur-xl
-                rounded-xl
-                shadow-2xl
-                border-t
-                border-card
-              `}>
-              <div className={`
-                  flex
-                  justify-center
-                  py-3
-                `}>
-                <div className={`
-                w-32
-                h-32
-                bg-sky-200/10
-                backdrop-blur-xl
-                rounded-full
-                shadow-2xl
-              `}></div>
-              </div>
-              <h2 className={`
-                  text-[1.8rem]
-                  md:text-[2.2rem]
-                `}>Bienvenido, soy Alvaro</h2>
-              <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sunt porro molestiae consequatur dolorem nobis cumque explicabo numquam nihil non! Eveniet, dicta ex harum nobis cupiditate voluptates quisquam. Ipsa, officiis placeat.</p>
-            </div>
+            <PresentationCard></PresentationCard>
           </div>
           <div className={`
               h-12
