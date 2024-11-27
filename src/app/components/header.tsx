@@ -66,7 +66,7 @@ export default function Header() {
       md:w-[700px]
       flex
       flex-col
-      items-center
+      items-left
     `}>
         <Nav />
         <div className={`
@@ -87,7 +87,7 @@ export default function Header() {
             <Title />
           </div>
           <div>
-            <PresentationCard></PresentationCard>
+            <PresentationCard />
           </div>
           <div className={`
               h-12

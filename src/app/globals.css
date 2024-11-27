@@ -28,7 +28,6 @@ h3 {
 h4 {
   font-size: 1.5rem;
   font-weight: 300;
-  ;
 }
 
 p {
@@ -42,4 +41,12 @@ a {
 
 a:hover {
   color: #fff;
+}
+
+@keyframes presentation-card-animation-1 {
+  from {
+  }
+  to {
+    width: 100%;
+  }
 }
