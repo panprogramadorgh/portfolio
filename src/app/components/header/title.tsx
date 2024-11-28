@@ -120,12 +120,29 @@ export default function Title() {
   return (
     <div>
       <h1 className={`
+          inline-block
           text-[2.2rem]
           sm:text-[3.5rem]
           md:text-[4.2rem]
           text-center
           font-extrabold
-        `}>{title.text}</h1>
+          `}>
+        <span>{title.text}</span>
+        <div className={`
+          inline-block
+          w-2
+          h-12
+          `}>
+          <div style={{
+            animation: "title-blinking-cursor ease 1s infinite"
+          }} className={`
+              w-full
+              h-full
+              bg-glow
+            `}>
+          </div>
+        </div>
+      </h1>
     </div>
   )
 }

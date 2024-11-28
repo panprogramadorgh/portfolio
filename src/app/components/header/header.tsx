@@ -1,8 +1,8 @@
 import Image from "next/image";
-import Nav from "@/app/components/nav";
-import Title from "@/app/components/title";
+import Nav from "@/app/components/header/nav";
+import Title from "@/app/components/header/title";
 import gradientGridImage from "@/app/images/header/grid-gradiant.webp"
-import PresentationCard from "@/app/components/presentation-card";
+import PresentationCard from "@/app/components/header/presentation-card";
 
 export default function Header() {
   return (

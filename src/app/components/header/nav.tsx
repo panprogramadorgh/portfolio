@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { MouseEventHandler, useContext } from "react";
-import { BackdropCtx, useCheckBackdropVisibility } from "../contexts/backdrop-ctx";
+import { BackdropCtx, useCheckBackdropVisibility } from "../../contexts/backdrop-ctx";
 
 export default function Nav() {
   const backdropVisibleState = useContext(BackdropCtx)
