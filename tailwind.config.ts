@@ -9,10 +9,13 @@ export default {
   theme: {
     extend: {
       colors: {
-        grastart: "var(--grastart)",
-        graend: "var(--graend)",
+        "background-heavy": "var(--background-heavy)",
         background: "var(--background)",
         foreground: "var(--foreground)",
+        "foreground-light": "var(--foreground-light)",
+        grastart: "var(--grastart)",
+        graend: "var(--graend)",
+        glow: "var(--glow)",
       },
       borderColor: {
         card: "var(--card-border-color)"

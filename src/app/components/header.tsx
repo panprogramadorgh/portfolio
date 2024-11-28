@@ -1,8 +1,8 @@
 import Image from "next/image";
 import Nav from "@/app/components/nav";
 import Title from "@/app/components/title";
-import gradientGridImage from "@/app/images/grid-gradiant.webp"
-import PresentationCard from "./presentation-card";
+import gradientGridImage from "@/app/images/header/grid-gradiant.webp"
+import PresentationCard from "@/app/components/presentation-card";
 
 export default function Header() {
   return (
@@ -21,14 +21,14 @@ export default function Header() {
       w-full
       h-full
 
-      bg-bottom
+      bg-top
       bg-cover
       bg-no-repeat
 
       border-b
       border-foreground
 
-      opacity-30
+      opacity-20
     `}>
       </div>
       <div className={`
@@ -62,32 +62,34 @@ export default function Header() {
           `}></div>
       </div>
       <header className={`
-      w-[90%]
-      md:w-[700px]
-      flex
-      flex-col
-      items-left
-    `}>
+        w-[90%]
+        md:w-[700px]
+        flex
+        flex-col
+        items-center
+      `}>
         <Nav />
         <div className={`
-          h-full
+          w-full
           flex
           flex-col
           gap-4
-          
           pt-20
         `}>
-          <div className={`
+          <div>
+            <div className={`
               h-52
               flex
               items-center
               px-4
-
             `}>
-            <Title />
-          </div>
-          <div>
-            <PresentationCard />
+              <Title />
+            </div>
+            <div className={`
+                  mt-6
+              `}>
+              <PresentationCard />
+            </div>
           </div>
           <div className={`
               h-12

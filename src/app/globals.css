@@ -3,10 +3,16 @@
 @tailwind utilities;
 
 :root {
-  --background: #1e293b99;
-  --foreground: #fffc;
-  --grastart: #041726;
-  --graend: #0e131f;
+  --background-heavy: #151d29;
+  --background: #1e293b;
+
+  --foreground: #fffe;
+  --foreground-light: #fffa;
+  
+  --grastart: #0b1120;
+  --graend: #0f172b;
+  --glow: #0ea5e9;
+
   --card-border-color: #e2e8f033;
 }
 
@@ -43,7 +49,20 @@ a:hover {
   color: #fff;
 }
 
-@keyframes presentation-card-animation-1 {
+/* Animaciones css genericas  */
+
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Presentation card css animations */
+
+@keyframes presentation-card-widening {
   from {
   }
   to {

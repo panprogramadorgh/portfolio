@@ -124,6 +124,7 @@ export default function Title() {
           sm:text-[3.5rem]
           md:text-[4.2rem]
           text-center
+          font-extrabold
         `}>{title.text}</h1>
     </div>
   )
