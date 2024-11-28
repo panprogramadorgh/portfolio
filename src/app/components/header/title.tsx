@@ -89,8 +89,6 @@ const titleReducer = (state: TitleInfo, action: TitleReducerAction) => {
 
 export default function Title() {
   const [title, dispatchTitle] = useReducer(titleReducer, { text: "" });
-  /* El motivo de esta funcion no es otro que evitar el error de compilacion de vercel. De esta manera evitamos colocar title como dependencia en useEffect y con ello actualizaciones innecesarias. */
-  const getTitle = () => title;
 
   useEffect(() => {
     const timeouts: NodeJS.Timeout[] = [];
@@ -101,7 +99,7 @@ export default function Title() {
         finalText: "Desarrollador de Software"
       },
       state: {
-        value: getTitle(),
+        value: title,
         dispatcher: dispatchTitle
       },
       animationTimeouts: timeouts,

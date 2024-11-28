@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Nav from "@/app/components/header/nav";
 import Title from "@/app/components/header/title";
 import gradientGridImage from "@/app/images/header/grid-gradiant.webp"
